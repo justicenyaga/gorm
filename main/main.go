@@ -7,6 +7,7 @@ import (
 	"gorm-mysql/models"
 	"log"
 	"os"
+	"strconv"
 )
 
 type Configuration struct {
@@ -43,16 +44,28 @@ func main() {
 	//
 	// dbtools.Select(students)
 
-	student := models.Student{
-		ID: 4,
-	}
+	// student := models.Student{
+	// 	ID: 4,
+	// }
+	//
+	// data := map[string]interface{}{
+	// 	"Name": "Timothy Dalton",
+	// 	"Age":  28,
+	// }
+	//
+	// rowsAffected := dbtools.SingleUpdate(&student, data)
+	//
+	// fmt.Println("Rows Affected:", rowsAffected)
+
+	age := 28
+
+	whereClause := "age = " + strconv.Itoa(age)
 
 	data := map[string]interface{}{
-		"Name": "Timothy Dalton",
-		"Age":  28,
+		"Name": "Kelvin Hart",
+		"Age":  40,
 	}
 
-	rowsAffected := dbtools.SingleUpdate(&student, data)
-
+	rowsAffected := dbtools.MultipleUpdate(&models.Student{}, whereClause, data)
 	fmt.Println("Rows Affected:", rowsAffected)
 }

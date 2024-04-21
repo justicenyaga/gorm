@@ -57,3 +57,11 @@ func SingleUpdate(object interface{}, data map[string]interface{}) int64 {
 
 	return result.RowsAffected
 }
+
+func MultipleUpdate(object interface{}, whereClause string, data map[string]interface{}) int64 {
+	db := connect()
+
+	result := db.Model(object).Where(whereClause).Updates(data)
+
+	return result.RowsAffected
+}
