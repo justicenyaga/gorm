@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"gorm-mysql/dbtools"
 	"gorm-mysql/models"
 	"log"
@@ -38,7 +39,20 @@ func main() {
 	// dbtools.Save(&student)
 	// fmt.Println("Student added to the database")
 
-	var students []models.Student
+	// var students []models.Student
+	//
+	// dbtools.Select(students)
 
-	dbtools.Select(students)
+	student := models.Student{
+		ID: 4,
+	}
+
+	data := map[string]interface{}{
+		"Name": "Timothy Dalton",
+		"Age":  28,
+	}
+
+	rowsAffected := dbtools.SingleUpdate(&student, data)
+
+	fmt.Println("Rows Affected:", rowsAffected)
 }

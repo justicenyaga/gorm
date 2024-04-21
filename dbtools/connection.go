@@ -49,3 +49,11 @@ func Select(students []models.Student) {
 		fmt.Printf("%d\t%s\t%d\n", student.ID, student.Name, student.Age)
 	}
 }
+
+func SingleUpdate(object interface{}, data map[string]interface{}) int64 {
+	db := connect()
+
+	result := db.Model(object).Updates(data)
+
+	return result.RowsAffected
+}
