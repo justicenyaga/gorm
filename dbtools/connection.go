@@ -73,3 +73,11 @@ func SingleDelete(object interface{}) int64 {
 
 	return result.RowsAffected
 }
+
+func MultipleDelete(object interface{}, whereClause string) int64 {
+	db := connect()
+
+	result := db.Where(whereClause).Delete(object)
+
+	return result.RowsAffected
+}
