@@ -65,3 +65,11 @@ func MultipleUpdate(object interface{}, whereClause string, data map[string]inte
 
 	return result.RowsAffected
 }
+
+func SingleDelete(object interface{}) int64 {
+	db := connect()
+
+	result := db.Delete(object)
+
+	return result.RowsAffected
+}
