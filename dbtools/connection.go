@@ -32,3 +32,9 @@ func CreateTable(object ...interface{}) {
 
 	fmt.Println("Table(s) created successfully")
 }
+
+func Save(object interface{}) {
+	db := connect()
+
+	db.Create(object)
+}

@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"gorm-mysql/dbtools"
 	"gorm-mysql/models"
 	"log"
@@ -28,5 +29,13 @@ func main() {
 
 	dbtools.DBInitializer(conf.DataSourceName)
 
-	dbtools.CreateTable(&models.Student{})
+	// dbtools.CreateTable(&models.Student{})
+
+	student := models.Student{
+		ID:   4,
+		Name: "Robert Downey",
+		Age:  44,
+	}
+	dbtools.Save(&student)
+	fmt.Println("Student added to the database")
 }
