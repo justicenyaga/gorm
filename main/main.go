@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"gorm-mysql/dbtools"
+	"gorm-mysql/models"
 	"log"
 	"os"
 )
@@ -26,4 +27,6 @@ func main() {
 	}
 
 	dbtools.DBInitializer(conf.DataSourceName)
+
+	dbtools.CreateTable(&models.Student{})
 }
