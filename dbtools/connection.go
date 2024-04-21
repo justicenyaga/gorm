@@ -2,6 +2,7 @@ package dbtools
 
 import (
 	"fmt"
+	"gorm-mysql/models"
 	"log"
 
 	"gorm.io/driver/mysql"
@@ -37,4 +38,14 @@ func Save(object interface{}) {
 	db := connect()
 
 	db.Create(object)
+}
+
+func Select(students []models.Student) {
+	db := connect()
+
+	db.Find(&students)
+
+	for _, student := range students {
+		fmt.Printf("%d\t%s\t%d\n", student.ID, student.Name, student.Age)
+	}
 }
